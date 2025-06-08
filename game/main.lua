@@ -20,12 +20,15 @@ function lve.load()
     L.AddSystems(world)
 end
 
-
+--tiny ecs is a little bit different from other ECS-systems since
+--you can filter out systems when updating the world
 function lve.update(dt)
+    --updates the world only using the non-drawing systems
     world:update(dt, filterNonDraw)
 end
 
 function lve.draw()
     local delta = lve.timer.getDelta()
+    --updates the world only using the drawing systems
     world:update(delta, filterDrawing)
 end
