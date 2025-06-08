@@ -9,7 +9,7 @@ drawCube.filter = tiny.requireAll("cube")
 drawCube.isForDrawing = true
 
 function drawCube:process(e,dt)
-    lve.graphics.rectangle("fill",e.cube.x, e.cube.y, 40,40)
+    lve.graphics.draw(assets.cube,e.cube.x, e.cube.y)
 end
 
 return drawCube

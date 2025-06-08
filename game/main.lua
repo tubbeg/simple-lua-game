@@ -1,34 +1,31 @@
 local tiny = require("third-party/tiny")
 local spawnSystem = require("systems/spawn")
-local dc = require("systems/drawCube")
+local L = require("initWorld")
+local lve = love
 
 -- simple is pretty much always better
 
 local h = "hello"
 print(h,h,h)
-local lve = love
-
-
-local result = {
-    score = 0
-}
 
 local world = tiny.world()
-local ds = tiny.requireAll("isForDrawing")
-local nds = tiny.rejectAny("isForDrawing")
+local filterDrawing = tiny.requireAll("isForDrawing")
+local filterNonDraw = tiny.rejectAny("isForDrawing")
+
 
 function lve.load()
-    tiny.addEntity(world,result)
-    tiny.addSystem(world, spawnSystem)
-    tiny.addSystem(world, dc)
+    -- i do not like using globals at all
+    -- but I'll make an exception for this
+    assets = L.AddAssets()
+    L.AddSystems(world)
 end
 
+
 function lve.update(dt)
-    world:update(dt, nds)
+    world:update(dt, filterNonDraw)
 end
 
 function lve.draw()
     local delta = lve.timer.getDelta()
-    world:update(delta, ds)
-    lve.graphics.print("Hello World!", 400, 300)
+    world:update(delta, filterDrawing)
 end
