@@ -9,7 +9,7 @@ stopCube.isForDrawing = false
 
 function stopCube:process(e,dt)
     local y = e.cube.y
-    if y > 300 then
+    if y > 18 then
         e.stop = true
     end
 end

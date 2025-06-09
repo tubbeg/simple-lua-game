@@ -5,15 +5,18 @@ local lve = love
 
 -- simple is pretty much always better
 
-local h = "hello"
-print(h,h,h)
+local hello = "hello"
+print(hello,hello,hello)
 
 local world = tiny.world()
 local filterDrawing = tiny.requireAll("isForDrawing")
 local filterNonDraw = tiny.rejectAny("isForDrawing")
 
-
 function lve.load()
+    
+    lve.window.setMode(300, 800, {resizable = true})
+
+    --lve.window.setMode(0, 0, {resizable = true})  --0,0 is the entire available window
     -- i do not like using globals at all
     -- but I'll make an exception for this
     assets = L.AddAssets()
@@ -28,7 +31,15 @@ function lve.update(dt)
 end
 
 function lve.draw()
+
+    lve.graphics.scale(0.5, 0.5) 
     local delta = lve.timer.getDelta()
     --updates the world only using the drawing systems
     world:update(delta, filterDrawing)
+end
+
+function lve.resize(w, h)
+-- get real dimensions
+  WindowWidth = w
+  WindowHeight = h
 end

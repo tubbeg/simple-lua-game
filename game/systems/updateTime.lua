@@ -7,7 +7,7 @@ updateTime.isForDrawing = false
 
 function updateTime:process(e,dt)
     e.time.ct = e.time.ct + dt
-    if e.time.ct > 1 then
+    if e.time.ct > 0.1 then
         e.time.secs = e.time.secs + 1
         e.time.ct = 0
     end
