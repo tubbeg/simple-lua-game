@@ -4,6 +4,7 @@ local dc = require("systems/drawCube")
 local mv = require("systems/moveCube")
 local tm = require("systems/updateTime")
 local sc = require("systems/stopCube")
+local ins = require("systems/inputSystem")
 local lve = love
 
 local L = {}
@@ -25,6 +26,7 @@ function L.AddSystems(w)
     tiny.addSystem(w, dc)
     tiny.addSystem(w, tm)
     tiny.addSystem(w, sc)
+    tiny.addSystem(w, ins)
 end
 
 
