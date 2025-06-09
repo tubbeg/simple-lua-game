@@ -1,21 +1,10 @@
 local tiny = require("third-party/tiny")
+local TimeToUpdate = require("getTime")
 local lve = love
-
 
 local inputSystem = tiny.system()
 inputSystem.filter = tiny.requireAny("cube", "stop", "time")
 inputSystem.isForDrawing = false
-
-
-function GetTimeEntity(entities)
-    for i,v in ipairs(entities) do
-        if v.time ~= nil then
-            return v
-        end
-    end
-    return nil
-end
-
 
 function MoveEntityX(e)
     if e.stop == nil then
@@ -35,13 +24,6 @@ function MoveEntityX(e)
                 e.cube.x = 0
             end
         end
-    end
-end
-
-function TimeToUpdate(ents)
-    local t = GetTimeEntity(ents)
-    if t ~= nil then
-        return t.time.ct == 0
     end
 end
 

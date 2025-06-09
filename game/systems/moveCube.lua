@@ -1,16 +1,8 @@
 local tiny = require("third-party/tiny")
+local TimeToUpdate = require("getTime")
 local lve = love
 
 -- 10x20
-
-function GetTimeEntity(entities)
-    for i,v in ipairs(entities) do
-        if v.time ~= nil then
-            return v
-        end
-    end
-    return nil
-end
 
 function EqualPos (x,y,a,b)
     local xEqual = x == a
@@ -63,12 +55,6 @@ function MoveEntities(ents)
     end
 end
 
-function TimeToUpdate(ents)
-    local t = GetTimeEntity(ents)
-    if t ~= nil then
-        return t.time.ct == 0
-    end
-end
 
 local moveCube = tiny.system()
 moveCube.filter = tiny.requireAny("cube", "time", "stop")
