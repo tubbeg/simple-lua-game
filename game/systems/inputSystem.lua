@@ -1,5 +1,5 @@
 local tiny = require("third-party/tiny")
-local TimeToUpdate = require("getTime")
+local U = require("utility")
 local lve = love
 
 local inputSystem = tiny.system()
@@ -28,7 +28,7 @@ function MoveEntityX(e)
 end
 
 function inputSystem:update(dt)
-    if TimeToUpdate(self.entities) then
+    if U.TimeToUpdate(self.entities) then
         for i,v in ipairs(self.entities) do
             MoveEntityX(v)
         end

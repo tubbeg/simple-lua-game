@@ -1,24 +1,16 @@
 local tiny = require("third-party/tiny")
-local TimeToUpdate = require("getTime")
+local U = require("utility")
 local lve = love
 
 -- 10x20
 
-function EqualPos (x,y,a,b)
-    local xEqual = x == a
-    local yEqual = y == b
-    return xEqual and yEqual
-end
 
-function IsCube(entity)
-    return entity.cube ~= nil
-end
 
 function CubeEntityPosEqualBelow(entityAbove, entityBelow)
-    if IsCube(entityAbove) and IsCube(entityBelow) then
+    if U.IsCube(entityAbove) and U.IsCube(entityBelow) then
         local x,y = entityAbove.cube.x, entityAbove.cube.y + 1
         local a,b = entityBelow.cube.x, entityBelow.cube.y
-        return EqualPos(x,y,a,b)
+        return U.EqualPos(x,y,a,b)
     end
     return false
 end
@@ -61,7 +53,7 @@ moveCube.filter = tiny.requireAny("cube", "time", "stop")
 moveCube.isForDrawing = false
 
 function moveCube:update(dt)
-    if TimeToUpdate(self.entities) then
+    if U.TimeToUpdate(self.entities) then
         MoveEntities(self.entities)
     end
 end
